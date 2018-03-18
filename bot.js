@@ -17,9 +17,9 @@ bot.on('message', message => {
         args = args.splice(1);
 		
         if(Commands.request(cmd)) {
-                message.channel.send(Commands.request(cmd));
+                message.reply(Commands.request(cmd));
         }else {
-			message.channel.send("Mauvaise utilisation de la commande, essayez $help pour plus d'infos");
+			message.reply("Mauvaise utilisation de la commande, essayez $help pour plus d'infos");
 		}
     }
 });
