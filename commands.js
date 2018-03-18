@@ -3,3 +3,7 @@ var request = [
   {cmd: 'bonjour', response: 'Coucou toi !'},
   {cmd: 'cerises', response: 'Ma petite cerise'}
 ];
+
+module.exporte = {
+	request;
+}

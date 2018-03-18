@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const Commands = require("commands.js");
+const Commands = require("./commands.js");
 
 // Initialize Discord Bot
 var bot = new Discord.Client();
