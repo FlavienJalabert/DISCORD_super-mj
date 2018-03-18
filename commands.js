@@ -8,9 +8,6 @@ var commands = [
 
 
 
-
-
-
 module.exports = {
 	request : function(requestedCmd) {
 		if (typeof commands.find(x => x.cmd === requestedCmd) !== "undefined") {
