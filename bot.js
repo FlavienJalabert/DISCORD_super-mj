@@ -16,7 +16,7 @@ bot.on('message', message => {
         args = args.splice(1);
         switch(cmd) {
             case 'ping':
-                message.channel.send('Pong!');
+                message.channel.send('/tts Pong!');
             break;
             // Just add any case commands if you want to..
          }
