@@ -11,17 +11,14 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
 	if(message.author.bot) return;
-    if (message.content.substring(0, 1) == '$') {
-        var args = message.content.substring(1).split(' ');
-        var cmd = args[0];
-        args = args.splice(1);
-		
-        if(Commands.request(cmd)) {
-                message.reply(Commands.request(cmd));
-        }else {
-			message.reply("Mauvaise utilisation de la commande, essayez $help pour plus d'infos");
-		}
-    }
+	
+	var cmd = message.content;
+	
+	if(Commands.request(cmd)) {
+			message.reply(Commands.request(cmd));
+	}else {
+		message.reply("Mauvaise utilisation de la commande, essayez $help pour plus d'infos");
+	}
 });
 
 
