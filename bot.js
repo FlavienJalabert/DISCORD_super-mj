@@ -15,10 +15,9 @@ bot.on('message', message => {
         var args = message.content.substring(1).split(' ');
         var cmd = args[0];
         args = args.splice(1);
-		var result = Commands.request.find(cmd);
-		console.log(result);
-        if(result.cmd == cmd) {
-                message.channel.send(result.response);
+		
+        if(Commands.request(cmd)) {
+                message.channel.send(Commands.request(cmd));
         }else {
 			message.channel.send("Mauvaise utilisation de la commande, essayez $help pour plus d'infos");
 		}
