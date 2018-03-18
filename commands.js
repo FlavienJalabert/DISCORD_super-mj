@@ -1,6 +1,6 @@
 var commands = [
 	{cmd: 'ping', response: 'Pong!'},
-	{cmd: 'bonjour', response: 'Coucou ${message.author.username} !'},
+	{cmd: 'bonjour', response: 'Coucou toi!'},
 	{cmd: 'cerises', response: 'Ma petite cerise'}
 ];
 
