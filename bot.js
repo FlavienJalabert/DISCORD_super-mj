@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const Commands = require("commands.json");
 
 // Initialize Discord Bot
 var bot = new Discord.Client();
@@ -14,16 +15,14 @@ bot.on('message', message => {
         var args = message.content.substring(1).split(' ');
         var cmd = args[0];
         args = args.splice(1);
-        switch(cmd) {
-            case 'ping':
-                message.channel.send('Pong!');
-            break;
-			case 'bonjour':
-                message.channel.send('Coucou toi!');
-            break;
-            // Just add any case commands if you want to..
-         }
-     }
+		var result = Commands.request.find(cmd);
+		console.log(result);
+        if(result.cmd == cmd) {
+                message.channel.send(result.response);
+        }else {
+			message.channel.send("Mauvaise utilisation de la commande, essayez $help pour plus d'infos");
+		}
+    }
 });
 
 
