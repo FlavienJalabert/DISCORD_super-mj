@@ -19,7 +19,7 @@ bot.on('message', message => {
                 message.channel.send('Pong!');
             break;
 			case 'bonjour':
-                message.channel.send('Couou toi!');
+                message.channel.send('Coucou toi!');
             break;
             // Just add any case commands if you want to..
          }
