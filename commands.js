@@ -1,9 +1,7 @@
-var request = [
-  {cmd: 'ping', response: 'Pong!'},
-  {cmd: 'bonjour', response: 'Coucou toi !'},
-  {cmd: 'cerises', response: 'Ma petite cerise'}
-];
-
-module.exporte = {
-	request;
+module.exports = {
+	var request = [
+		{cmd: 'ping', response: 'Pong!'},
+		{cmd: 'bonjour', response: 'Coucou toi !'},
+		{cmd: 'cerises', response: 'Ma petite cerise'}
+	];
 }
