@@ -15,9 +15,9 @@ bot.on('message', message => {
 	var cmd = message.content;
 	
 	if(Commands.request(cmd)) {
-			message.reply(Commands.request(cmd));
+			message.channel.send(Commands.request(cmd));
 	}else {
-		message.reply("Bien dit !");
+		message.channel.send("Je n'ai pas compris votre message, excusez moi...");
 	}
 });
 
