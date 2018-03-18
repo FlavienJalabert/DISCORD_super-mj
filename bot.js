@@ -17,7 +17,7 @@ bot.on('message', message => {
 	if(Commands.request(cmd)) {
 			message.reply(Commands.request(cmd));
 	}else {
-		message.reply("Mauvaise utilisation de la commande, essayez $help pour plus d'infos");
+		message.reply("Bien dit !");
 	}
 });
 

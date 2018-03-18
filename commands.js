@@ -6,6 +6,8 @@ var commands = [
 
 module.exports = {
 	request : function(requestedCmd) {
-		return commands.find(x => x.cmd === requestedCmd).response;
+		if (commands.find(x => x.cmd === requestedCmd).response) {
+			return commands.find(x => x.cmd === requestedCmd).response;
+		}else return null
 	}
 }
