@@ -1,9 +1,12 @@
 {
   "name": "super_mj",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "My own Discord bot",
   "main": "bot.js",
   "author": "BleuArgent",
+  "engines": {
+    "node": "8.9.1"
+  },
   "scripts": {
     "start": "node index.js"
   },
@@ -24,9 +27,10 @@
     "url": "https://github.com/FlavienJalabert/bot_discord/issues"
   },
   "homepage": "https://github.com/FlavienJalabert/bot_discord#readme",
-  "devDependencies": {},
   "keywords": [
-    "heroku"
+    "node",
+    "heroku",
+    "express"
   ],
   "license": "MIT"
 }

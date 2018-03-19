@@ -28,12 +28,11 @@ bot.on('message', message => {
 	
 	if(command == "play") {
 		//do
-		console.log("do")
+		console.log("do play")
 	}
 	
 	
 	}
 });
-
 
 bot.login(process.env.BOT_TOKEN);
