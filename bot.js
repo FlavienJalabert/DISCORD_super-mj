@@ -5,7 +5,7 @@ const Commands = require("./commands.js");
 var bot = new Discord.Client();
 
 bot.on('ready', () => {
-  console.log(`Logged in as ${bot.user.tag}!`);
+  console.log(`Logged in as ${bot.user.tag}`);
 });
 
 
@@ -14,10 +14,24 @@ bot.on('message', message => {
 	
 	var cmd = message.content;
 	
-	if(Commands.request(cmd)) {
-			message.channel.send(Commands.request(cmd));
+	if(cmd.indexOf(process.env.PREFIX) !== 0) {
+		
+		if(Commands.request(cmd)) {
+				message.channel.send(Commands.request(cmd));
+		}else {
+			console.log("No Matchs for : "+cmd);
+		}
 	}else {
-		console.log("No Matchs");
+		var args = cmd.slice(process.env.PREFIX.length).trim().split(/ +/g);
+		const command = args.shift().toLowerCase();
+	
+	
+	if(command == "play") {
+		//do
+		console.log("do")
+	}
+	
+	
 	}
 });
 

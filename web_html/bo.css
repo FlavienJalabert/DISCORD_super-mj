@@ -1,0 +1,39 @@
+html {
+	background-color: #eceae9;
+	font-family: arial, sans-serif;
+	font-variant: small-caps;
+}
+
+body {
+	margin: 10px;
+}
+
+p {
+	font-size: 25pt;
+	color: #DD94F4;
+}
+
+input {
+	border: none;
+	padding: .5em;
+}
+
+input[type=submit] {
+	background-color: rgb(255, 189, 0);
+}
+
+input[type=button] {
+	background-color: rgb(112, 13, 41);
+	color: white;
+}
+
+input[name*="details"] {
+	transition: 1s;
+	width: 300px;
+	word-break: break-word;
+}
+input[name*="details"]:focus {
+	transition: 1s;
+	width: 800px;
+	word-break: break-word;
+}
