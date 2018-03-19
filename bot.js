@@ -17,7 +17,7 @@ bot.on('message', message => {
 	if(Commands.request(cmd)) {
 			message.channel.send(Commands.request(cmd));
 	}else {
-		message.channel.send("Je n'ai pas compris votre message, excusez moi...");
+		console.log("No Matchs");
 	}
 });
 
