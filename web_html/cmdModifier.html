@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>backoffice</title>
-	<link href="web_html/bo.css" type="text/css" rel="stylesheet">
+	<link href="bo.css" type="text/css" rel="stylesheet">
 </head>
 
 
@@ -17,14 +17,14 @@
 function BO() {
 // Open the xml file TBDT
 var request = new XMLHttpRequest();
-request.open("GET","web_html/general.xml", false);
+request.open("GET","general.xml", false);
 request.setRequestHeader("Content-Type", "text/xml");
 request.send();
 var xml = request.responseXML; // Get raw datas
 var TBDT = xml.childNodes[0]; // Access each tasks
 var form = document.createElement("form");
 form.setAttribute("name", "formgeneral");
-form.setAttribute("action", "web_html/maj.php");
+form.setAttribute("action", "maj.php");
 form.setAttribute("method", "GET");
 form.setAttribute("accept-charset", "UTF-8");
 var table = document.createElement("table");
