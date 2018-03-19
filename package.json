@@ -8,9 +8,7 @@
     "start": "node bot.js"
   },
   "dependencies": {
-    "discord.js": "^11.3.2",
-	"node-static": "*",
-	"bootstrap": "*"
+    "discord.js": "^11.3.2"
   },
   "repository": {
     "type": "git",
