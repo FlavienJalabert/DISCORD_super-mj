@@ -4,7 +4,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>backoffice</title>
-	<link href="bo.css" type="text/css" rel="stylesheet">
 </head>
 
 
@@ -16,58 +15,57 @@
 <script language="JavaScript">
 function BO() {
 // Open the xml file containing commands
-var request = new XMLHttpRequest();
-request.open("GET","general.xml", false);
-request.setRequestHeader("Content-Type", "text/xml");
-request.send();
-var xml = request.responseXML; // Get raw datas
-var commands = xml.childNodes[0]; // Access each tasks
+var rq = new XMLHttpRequest();
+rq.open("GET","general.xml", false);
+rq.setRequestHeader("Content-Type", "text/xml");
+rq.send();
+var xml = rq.responseXML; // Get raw datas
+var commandList = xml.childNodes[0]; // Access each tasks
 var table = document.createElement("table");
 table.setAttribute("id", "commandsList");
 var DEMO = ["Request", "Response"];
 var tr = document.createElement("tr");
-for (var i = 0; i < DEMO.lenght; i++) {
+for (var i = 0; i < DEMO.length; i++) {
 	var tdDemo = document.createElement("td");
 	tdDemo.innerHTML = DEMO[i];
 	tr.appendChild(tdDemo);
 }
 table.appendChild(tr);
-for (var i = 0; i < commands.children.length; i++)
+for (var i = 0; i < commandList.children.length; i++)
 {
-	var command = commands.children[i]; // Access each of the tasks values
-	var requests = command.getElementsByTagName("request");
-	var responses = command.getElementsByTagName("response");
-	// Fetch datas in the table
+	var commands = commandList.children[i]; // Access each of the commands values
+	var request = commands.getElementsByTagName("request");
+	var response = commands.getElementsByTagName("response");
+	// Fetch data in the table
 	var input = document.createElement("input");
 	input.setAttribute("type", "text");
 	var tr = document.createElement("tr");
 	tr.setAttribute("id", i+"command");
 	var td0 = document.createElement("td");
 	var td1 = document.createElement("td");
-	var request = input.cloneNode();
-	request.setAttribute("name", "request["+i+"]");
-	request.setAttribute("value", requests[0].textContent.toString());
-	var response = input.cloneNode();
-	response.setAttribute("name", "response["+i+"]");
-	response.setAttribute("value", responses[0].textContent.toString());
-	td0.appendChild(titre);
-	td1.appendChild(genre);
+	var requestEntry = input.cloneNode();
+	requestEntry.setAttribute("name", "request["+i+"]");
+	requestEntry.setAttribute("value", request[0].textContent.toString());
+	var responseEntry = input.cloneNode();
+	responseEntry.setAttribute("name", "response["+i+"]");
+	responseEntry.setAttribute("value", response[0].textContent.toString());
+	td0.appendChild(requestEntry);
+	td1.appendChild(responseEntry);
 	tr.appendChild(td0);
 	tr.appendChild(td1);
 	table.appendChild(tr);
 }
-form.appendChild(table);
 var titreDoc = document.createElement("p");
 var text = document.createTextNode("List of commands");
 titreDoc.appendChild(text);
 document.getElementsByTagName("body")[0].appendChild(titreDoc);
-document.getElementsByTagName("body")[0].appendChild(form);
-
+document.getElementsByTagName("body")[0].appendChild(table);
 // Adding buttons
-
 var table = document.getElementById("commandsList");
-var btnSave = document.createElement("button");
-btnSave.innerHTML("save");
+var btnSave = document.createElement("input");
+btnSave.setAttribute("type", "button");
+btnSave.setAttribute("value", "save");
+btnSave.setAttribute("onclick", "save()");
 var btnAjout = document.createElement("input");
 btnAjout.setAttribute("type", "button");
 btnAjout.setAttribute("value", "+");
@@ -75,7 +73,7 @@ btnAjout.addEventListener("click", add);
 table.appendChild(btnAjout);
 table.insertBefore(btnSave, table.firstChild);
 //console.log(table.children.length-2);
-for (var i = 0; i < table.children.length-2; i++) {
+for (var i = 0; i < table.children.length-3; i++) {
 	var btnDel = document.createElement("input");
 	btnDel.setAttribute("type", "button");
 	btnDel.setAttribute("value", "-");
@@ -84,11 +82,10 @@ for (var i = 0; i < table.children.length-2; i++) {
 	document.getElementById(i+"command").appendChild(btnDel);
 }
 }
-
 function add() {
 	var table = document.getElementById("commandsList");
 	var tr = document.createElement("tr");
-	tr.setAttribute("id", (table.children.length-2)+"command");
+	tr.setAttribute("id", (table.children.length-3)+"command");
 	var input = document.createElement("input");
 	var inputDate = document.createElement("input");
 	input.setAttribute("type", "text");
@@ -96,29 +93,32 @@ function add() {
 	var btn = document.createElement("input")
 	btn.setAttribute("type", "button");
 	btn.setAttribute("value", "-");
-	btn.setAttribute("onclick", "del("+(table.children.length-2)+")");
+	btn.setAttribute("onclick", "del("+(table.children.length-3)+")");
 	var td0 = document.createElement("td");
 	var td1 = document.createElement("td");
 	var request = input.cloneNode();
-	request.setAttribute("name", "request["+(table.children.length-2)+"]");
+	request.setAttribute("name", "request["+(table.children.length-3)+"]");
 	var response = input.cloneNode();
-	response.setAttribute("name", "response["+(table.children.length-2)+"]");
+	response.setAttribute("name", "response["+(table.children.length-3)+"]");
 	response.setAttribute("value", "");
-	td0.appendChild(title);
-	td1.appendChild(type);
+	td0.appendChild(request);
+	td1.appendChild(response);
 	tr.appendChild(td0);
 	tr.appendChild(td1);
 	tr.appendChild(btn);
 	table.insertBefore(tr, table.lastChild);
 	//console.log("ligne ajoutée");
 }
-
 function del(a) {
 	var DelTr = document.getElementById(a+"command");
 	document.getElementById("commandsList").removeChild(DelTr);
 	//console.log("ligne effacée");
 }
+function save() {
+	console.log("saving...");
+}
 
+BO();
 </script>
 
 </html>
