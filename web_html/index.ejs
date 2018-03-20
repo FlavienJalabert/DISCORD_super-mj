@@ -15,123 +15,80 @@
 
 <script language="JavaScript">
 function BO() {
-// Open the xml file TBDT
+// Open the xml file containing commands
 var request = new XMLHttpRequest();
 request.open("GET","general.xml", false);
 request.setRequestHeader("Content-Type", "text/xml");
 request.send();
 var xml = request.responseXML; // Get raw datas
-var TBDT = xml.childNodes[0]; // Access each tasks
-var form = document.createElement("form");
-form.setAttribute("name", "formgeneral");
-form.setAttribute("action", "maj.php");
-form.setAttribute("method", "GET");
-form.setAttribute("accept-charset", "UTF-8");
+var commands = xml.childNodes[0]; // Access each tasks
 var table = document.createElement("table");
-table.setAttribute("id", "tablegeneral");
-var DEMO = ["titre", "catégorie", "date de début", "date de fin", "horaires", "supprimer ligne"];
+table.setAttribute("id", "commandsList");
+var DEMO = ["Request", "Response"];
 var tr = document.createElement("tr");
-for (var i = 0; i < 6; i++) {
+for (var i = 0; i < DEMO.lenght; i++) {
 	var tdDemo = document.createElement("td");
 	tdDemo.innerHTML = DEMO[i];
 	tr.appendChild(tdDemo);
 }
 table.appendChild(tr);
-for (var i = 0; i < TBDT.children.length; i++)
+for (var i = 0; i < commands.children.length; i++)
 {
-	var task = TBDT.children[i]; // Access each of the tasks values
-	var title = task.getElementsByTagName("title");
-	var type = task.getElementsByTagName("type");
-	var stTm = task.getElementsByTagName("startTime");
-	var edTm = task.getElementsByTagName("endTime");
-	var details = task.getElementsByTagName("details");
-	// Fetch datas in a table
+	var command = commands.children[i]; // Access each of the tasks values
+	var requests = command.getElementsByTagName("request");
+	var responses = command.getElementsByTagName("response");
+	// Fetch datas in the table
 	var input = document.createElement("input");
-	var inputDate = document.createElement("input");
 	input.setAttribute("type", "text");
-	inputDate.setAttribute("type", "date");
 	var tr = document.createElement("tr");
-	tr.setAttribute("id", i+"general");
+	tr.setAttribute("id", i+"command");
 	var td0 = document.createElement("td");
 	var td1 = document.createElement("td");
-	var td2 = document.createElement("td");
-	var td3 = document.createElement("td");
-	var td4 = document.createElement("td");
-	var tdi = document.createElement("td");
-	var tdf = document.createElement("td");
-	var index = input.cloneNode();
-	index.setAttribute("name", "index["+i+"]");
-	index.setAttribute("value", i);
-	var titre = input.cloneNode();
-	titre.setAttribute("name", "title["+i+"]");
-	titre.setAttribute("value", title[0].textContent.toString());
-	var genre = input.cloneNode();
-	genre.setAttribute("name", "type["+i+"]");
-	genre.setAttribute("value", type[0].textContent.toString());
-	var startTime = inputDate.cloneNode();
-	startTime.setAttribute("name", "stTm["+i+"]");
-	startTime.setAttribute("value", stTm[0].textContent.toString());
-	var endTime = inputDate.cloneNode();
-	endTime.setAttribute("name", "edTm["+i+"]");
-	endTime.setAttribute("value", edTm[0].textContent.toString());
-	var detail = input.cloneNode();
-	detail.setAttribute("name", "details["+i+"]");
-	detail.setAttribute("value", details[0].textContent.toString());
+	var request = input.cloneNode();
+	request.setAttribute("name", "request["+i+"]");
+	request.setAttribute("value", requests[0].textContent.toString());
+	var response = input.cloneNode();
+	response.setAttribute("name", "response["+i+"]");
+	response.setAttribute("value", responses[0].textContent.toString());
 	td0.appendChild(titre);
 	td1.appendChild(genre);
-	td2.appendChild(startTime);
-	td3.appendChild(endTime);
-	td4.appendChild(detail);
-	tdi.appendChild(index);
-	tdi.setAttribute("hidden", true);
-	//td0.setAttribute("hidden", true)
-	tr.appendChild(tdi);
 	tr.appendChild(td0);
 	tr.appendChild(td1);
-	tr.appendChild(td2);
-	tr.appendChild(td3);
-	tr.appendChild(td4);
 	table.appendChild(tr);
 }
-var file = document.createElement("input");
-file.setAttribute("name", "fichier");
-file.setAttribute("value", "general");
-file.setAttribute("hidden", true);
-form.appendChild(file);
 form.appendChild(table);
 var titreDoc = document.createElement("p");
-var text = document.createTextNode("agenda "+"general");
+var text = document.createTextNode("List of commands");
 titreDoc.appendChild(text);
 document.getElementsByTagName("body")[0].appendChild(titreDoc);
 document.getElementsByTagName("body")[0].appendChild(form);
 
 // Adding buttons
 
-var table = document.getElementById("tablegeneral");
-var btnSave = document.createElement("input");
-btnSave.setAttribute("value", "enregistrer");
-btnSave.setAttribute("type", "submit");
+var table = document.getElementById("commandsList");
+var btnSave = document.createElement("button");
+btnSave.innerHTML("save");
 var btnAjout = document.createElement("input");
 btnAjout.setAttribute("type", "button");
 btnAjout.setAttribute("value", "+");
-btnAjout.addEventListener("click", function() {add("general");});
+btnAjout.addEventListener("click", add);
 table.appendChild(btnAjout);
 table.insertBefore(btnSave, table.firstChild);
 //console.log(table.children.length-2);
-for (var i = 0; i < table.children.length-3; i++) {
+for (var i = 0; i < table.children.length-2; i++) {
 	var btnDel = document.createElement("input");
 	btnDel.setAttribute("type", "button");
 	btnDel.setAttribute("value", "-");
-	btnDel.setAttribute("onclick", "del("+i+", "+'"general"'+")");
+	btnDel.setAttribute("onclick", "del("+i+");
 	//btnDel.addEventListener("click", function() {del(i, fichier.toString());});
-	document.getElementById(i+"general").appendChild(btnDel);
+	document.getElementById(i+"command").appendChild(btnDel);
 }
 }
 
-function add(fichier) {
-	var table = document.getElementById("table"+fichier);
+function add() {
+	var table = document.getElementById("commandsList");
 	var tr = document.createElement("tr");
-	tr.setAttribute("id", (table.children.length-3)+fichier);
+	tr.setAttribute("id", (table.children.length-2)+"command");
 	var input = document.createElement("input");
 	var inputDate = document.createElement("input");
 	input.setAttribute("type", "text");
@@ -139,50 +96,27 @@ function add(fichier) {
 	var btn = document.createElement("input")
 	btn.setAttribute("type", "button");
 	btn.setAttribute("value", "-");
-	btn.setAttribute("onclick", "del("+(table.children.length-3)+", '"+fichier+"')");
+	btn.setAttribute("onclick", "del("+(table.children.length-2)+")");
 	var td0 = document.createElement("td");
 	var td1 = document.createElement("td");
-	var td2 = document.createElement("td");
-	var td3 = document.createElement("td");
-	var td4 = document.createElement("td");
-	var tdi = document.createElement("td");
-	var index = input.cloneNode();
-	index.setAttribute("name", "index["+(table.children.length-3)+"]");
-	index.setAttribute("value", (table.children.length-3));
-	var title = input.cloneNode();
-	title.setAttribute("name", "title["+(table.children.length-3)+"]");
-	var type = input.cloneNode();
-	type.setAttribute("name", "type["+(table.children.length-3)+"]");
-	type.setAttribute("value", "Match");
-	var stTime = inputDate.cloneNode();
-	stTime.setAttribute("name", "stTm["+(table.children.length-3)+"]");
-	var edTime = inputDate.cloneNode();
-	edTime.setAttribute("name", "edTm["+(table.children.length-3)+"]");
-	var details = input.cloneNode();
-	details.setAttribute("name", "details["+(table.children.length-3)+"]");
+	var request = input.cloneNode();
+	request.setAttribute("name", "request["+(table.children.length-2)+"]");
+	var response = input.cloneNode();
+	response.setAttribute("name", "response["+(table.children.length-2)+"]");
+	response.setAttribute("value", "");
 	td0.appendChild(title);
 	td1.appendChild(type);
-	td2.appendChild(stTime);
-	td3.appendChild(edTime);
-	td4.appendChild(details);
-	tdi.appendChild(index);
-	tdi.setAttribute("hidden", true);
-	//td0.setAttribute("hidden", true);
-	tr.appendChild(tdi);
 	tr.appendChild(td0);
 	tr.appendChild(td1);
-	tr.appendChild(td2);
-	tr.appendChild(td3);
-	tr.appendChild(td4);
 	tr.appendChild(btn);
 	table.insertBefore(tr, table.lastChild);
-	console.log("ligne ajoutée");
+	//console.log("ligne ajoutée");
 }
 
-function del(a, fichier) {
-	var DelTr = document.getElementById(a+fichier);
-	document.getElementById("table"+fichier).removeChild(DelTr);
-	console.log("ligne effacée");
+function del(a) {
+	var DelTr = document.getElementById(a+"command");
+	document.getElementById("commandsList").removeChild(DelTr);
+	//console.log("ligne effacée");
 }
 
 </script>
