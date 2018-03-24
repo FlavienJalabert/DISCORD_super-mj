@@ -3,7 +3,8 @@ var commands = [
 	{cmd: 'bonjour', response: 'Coucou toi!'},
 	{cmd: 'quelle est la couleur du ciel ?', response: 'Bleu, même si je n\'ai pas d\'yeux pour le voir mon programmateur m\'a dit que bleu est la couleur du ciel'},
 	{cmd: 'pourquoi la vie ?', response: 'Parce que les humains vivent ils se questionnent souvent à ce sujet, malheureusement, n\'étant pas humaine je ne peux vraiment vous répondre, désolée...'},
-	{cmd: 'cerises', response: 'Ma petite cerise'}
+	{cmd: 'cerises', response: 'Ma petite cerise'},
+	{cmd: 'blah', response: 'Meh.'}
 ];
 
 
