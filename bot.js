@@ -10,7 +10,8 @@ var shiritori = false;
 
 bot.on('ready', () => {
   console.log(`Logged in as ${bot.user.tag}`);
-  bot.setStatus('online', process.env.PREFIX+"help for further informations");
+  bot.user.setStatus('available');
+  bot.user.setActivity(process.env.PREFIX+"help for further informations");
 });
 
 
@@ -38,7 +39,7 @@ bot.on('message', message => {
 		shiritori = true;
 		const channel = message.channel;
 		channel.send("How many members wants to play ?");
-        var Collector1 = channel.createCollector(message => message.author.bot === false, {time: 30000});
+        var Collector1 = channel.createCollector(message => message.author.bot === false);
         Collector1.on('collect', message => {
 			var nop = Number(message.content);
 			if (nop <= 1 || typeof nop != 'number') {
@@ -48,7 +49,7 @@ bot.on('message', message => {
 				var player = Math.floor(Math.random()*nop+1);
 				channel.send("The first player is player " + player);
 				Collector1.stop('game started');
-				var Collector2 = channel.createCollector(message => message.author.bot === false, {time: 30000});
+				var Collector2 = channel.createCollector(message => message.author.bot === false);
 				Collector2.on("collect", message => {
 					let lastWord = message.content;
 					Collector2.stop('first word set');
