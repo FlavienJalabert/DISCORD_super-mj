@@ -1,7 +1,7 @@
 function getAllExcept(a,max){
 	var result=new Array();
 	var step=0;
-    for(var i=0;i<max;i++){
+    for(var i=1;i<max+1;i++){
 		if(a!==i){result[step]=i;step+=1;}
 	}return result;
 }
