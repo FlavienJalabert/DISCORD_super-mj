@@ -90,6 +90,14 @@ bot.on('message', message => {
 		console.log("do play")
 	}
 	
+	if(command == "help") {
+		var help = new Array();
+		help.push("talkative: Set the talkativity of the bot (true: will respond to any message, false: be quiet)");
+		help.push("shiritori: Start a new game of shiritori");
+		help.push("game: Set status of the bot to the defined game");
+
+		message.channel.send(CommonFunction.help(help));
+	}
 	
 	}
 });

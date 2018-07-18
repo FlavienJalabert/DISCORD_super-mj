@@ -23,10 +23,17 @@ function arbitrator(a, b) {
 	// if safe = 0 then it's safe, if safe = 1 then rule infraction has been detected
 	var safe = 0;
 	var error = "fault";
-	
+	//do
 	
 	
 	return new Array(safe, error)
+}
+function help(a) {
+	var out = "";
+	a.forEach(function (e) {
+		out += "$"+e+"\n\n";
+	});
+	return out;
 }
 
 
@@ -34,4 +41,5 @@ module.exports = {
 	getWinners : getWinners,
 	arbitrator : arbitrator,
 	nextPlayer : nextPlayer,
+	help : help,
 }
