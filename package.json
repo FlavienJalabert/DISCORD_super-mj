@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "bufferutil": "^3.0.3",
+    "discord": "^0.8.2",
     "discord.js": "^11.3.2",
     "discord.js-arbitrary-ffmpeg": "^1.0.0",
     "ejs": "^2.5.6",
