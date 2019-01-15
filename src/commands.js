@@ -10,9 +10,9 @@ var commands = [
 
 
 module.exports = {
-	request : function(requestedCmd) {
+	request : (requestedCmd) => {
 		if (typeof commands.find(x => x.cmd === requestedCmd) !== "undefined") {
 			return commands.find(x => x.cmd === requestedCmd).response;
 		}else return false
 	}
-}
+};
