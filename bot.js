@@ -16,9 +16,9 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
 	if(message.author.bot) return;
-	
+
 	let cmd = message.content;
-	
+
 	if(cmd.indexOf(process.env.PREFIX) === -1  && isTalkative === true) {
 		if(Commands.request(cmd)) {
 				message.channel.send(Commands.request(cmd));
@@ -28,7 +28,7 @@ bot.on('message', message => {
 	}else {
 		const args = message.content.slice(process.env.PREFIX.length).trim().split(/ /g);
 		const command = args.shift().toLowerCase();
-	
+
 	if(command === "talkative") {
 		isTalkative=!isTalkative;
 		message.channel.send("talkative set to " + isTalkative);
@@ -38,21 +38,20 @@ bot.on('message', message => {
 		let result = Math.floor(Math.random() * args[0]);
 		message.channel.send("rooooooll !  " + result);
 	}
-	
+
 	if(command === "play") {
 		//do
 		console.log("do play")
 	}
-	
+
 	if(command === "help") {
 		let help=[];
 
-		help.push("talkative: Set the talkative of the bot (true: will respond to any message, false: be quiet)");
-		help.push("game: Set status of the bot to the defined game");
+		help.push("roll : roll a dice ($roll <dice scale>)");
 
 		message.channel.send(CommonFunction.help(help));
 	}
-	
+
 	}
 });
 
