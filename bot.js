@@ -35,8 +35,10 @@ bot.on('message', message => {
 	}
 
 	if(command === "roll") {
-		let result = Math.floor(Math.random() * args[0]);
-		message.channel.send("rooooooll !  " + result);
+		if (args[0]) {
+			let result = Math.floor(Math.random() * args[0]);
+			message.channel.send("rooooooll !  " + result);
+		}
 	}
 
 	if(command === "play") {
@@ -47,7 +49,7 @@ bot.on('message', message => {
 	if(command === "help") {
 		let help=[];
 
-		help.push("roll : roll a dice ($roll <dice scale>)");
+		help.push("roll : roll a dice ($roll <dice size>)");
 
 		message.channel.send(CommonFunction.help(help));
 	}
