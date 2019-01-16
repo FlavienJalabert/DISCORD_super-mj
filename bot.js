@@ -35,7 +35,7 @@ bot.on('message', message => {
 	}
 
 	if(command === "roll") {
-		if (args[0]) {
+		if (typeof args[0] !== "undefined") {
 			let result = Math.floor(Math.random() * args[0]);
 			message.channel.send("rooooooll !  " + result);
 		}
