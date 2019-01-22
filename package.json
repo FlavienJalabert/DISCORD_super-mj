@@ -18,7 +18,10 @@
     "snekfetch": "^3.6.4",
     "ytdl-core": "^0.20.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "express": "letest",
+    "ejs": "latest"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FlavienJalabert/bot_discord.git"

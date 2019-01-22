@@ -26,7 +26,7 @@ bot.on('message', message => {
 			console.log("No matches for : " + cmd);
 		}
 	}else {
-		const args = message.content.slice(process.env.PREFIX.length).trim().split(/ /g);
+		let args = message.content.slice(process.env.PREFIX.length).trim().split(/ /g);
 		const command = args.shift().toLowerCase();
 
 	if(command === "talkative") {
@@ -35,6 +35,7 @@ bot.on('message', message => {
 	}
 
 	if(command === "roll") {
+		// TODO multiple dices
 		if (typeof args[0] !== "undefined") {
 			let result = Math.floor(Math.random() * args[0])+1;
 			message.channel.send("rooooooll !  " + result);
@@ -46,10 +47,39 @@ bot.on('message', message => {
 		console.log("do play")
 	}
 
+	if(command === "save") {
+		let arguments = args.join(" ").split("-");
+		if (arguments[1].contains("command")) {
+			let command = arguments[1].split(" ")[1];
+			let response = arguments[2].split(" ")[1];
+			// TODO save to data base command and response
+		}else {
+			if (arguments[1].contains("response")) {
+				let command = arguments[2].split(" ")[1];
+				let response = arguments[1].split(" ")[1];
+				// TODO save to data base command and response
+			}else {
+				message.channel.send("Wrong way to use the save command")
+			}
+		}
+		if (arguments[1].contains("c") && arguments[2].contains("r")) {
+			let command = arguments[1].split(" ")[1];
+			let response = arguments[2].split(" ")[1];
+			// TODO save to data base command and response
+		}else {
+			if (arguments[1].contains("r") && arguments[2].contains("c")) {
+				let command = arguments[2].split(" ")[1];
+				let response = arguments[1].split(" ")[1];
+				// TODO save to data base command and response
+			}
+		}
+
+	}
+
 	if(command === "help") {
 		let help=[];
 
-		help.push("roll : roll a dice ($roll <dice size>)");
+		help.push("$roll : roll a dice ($roll <dice size>)");
 
 		message.channel.send(CommonFunction.help(help));
 	}

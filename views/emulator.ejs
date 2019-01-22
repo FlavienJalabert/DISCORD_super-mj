@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>emulator</title>
+</head>
+<body>
+    <input type="text" width="500" id="str">
+<button onclick="doTest()">test</button>
+    <input type="text" id="result" disabled>
+</body>
+<script>
+    const result = document.getElementById("result");
+
+    function doTest () {
+        const cmd = document.getElementById("str").value;
+        let args = cmd.slice(1).trim().split(/ /g);
+        const command = args.shift().toLowerCase();
+
+        if(command === "roll") {
+            if (typeof args[0] !== "undefined") {
+                let result = Math.floor(Math.random() * args[0])+1;
+                message.channel.send("rooooooll !  " + result);
+            }
+        }
+
+        if(command === "save") {
+            let arguments = args.join(" ").split("-");
+            if (arguments[1].contains("command")) {
+                let command = arguments[1].split(" ")[1];
+                let response = arguments[2].split(" ")[1];
+                // TODO save to data base comamnd and repsonse
+            }else {
+                if (arguments[1].contains("response")) {
+                    let command = arguments[2].split(" ")[1];
+                    let response = arguments[1].split(" ")[1];
+                    // TODO save to data base comamnd and repsonse
+                }else {
+                    message.channel.send("Wrong way to use the save command")
+                }
+            }
+            if (arguments[1].contains("c") && arguments[2].contains("r")) {
+                let command = arguments[1].split(" ")[1];
+                let response = arguments[2].split(" ")[1];
+                // TODO save to data base comamnd and repsonse
+            }else {
+                if (arguments[1].contains("r") && arguments[2].contains("c")) {
+                    let command = arguments[2].split(" ")[1];
+                    let response = arguments[1].split(" ")[1];
+                    // TODO save to data base comamnd and repsonse
+                }
+            }
+        }
+    }
+
+    function logResult (str) {
+        console.log("coucou " + str);
+        result.disabled = false;
+        result.value = str;
+        result.disabled = true;
+    }
+
+</script>
+</html>
