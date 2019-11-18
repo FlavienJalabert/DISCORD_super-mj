@@ -19,8 +19,8 @@
     "ytdl-core": "^0.20.2"
   },
   "devDependencies": {
-    "express": "letest",
-    "ejs": "latest"
+    "ejs": "latest",
+    "express": "letest"
   },
   "repository": {
     "type": "git",
